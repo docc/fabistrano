@@ -16,6 +16,7 @@ def with_defaults(func):
         env.setdefault('python_bin', 'python')
         env.setdefault('remote_owner', 'www-data')
         env.setdefault('remote_group', 'www-data')
+        env.setdefault('venv_path', False)
 
 
         env.setdefault('domain_path', "%(base_dir)s/%(app_name)s" % \
