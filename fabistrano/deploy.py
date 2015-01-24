@@ -72,7 +72,7 @@ def update_code():
 
 @with_defaults
 def collectstatic():
-    run("source %(venv_path)s/bin/activate;cd %(current_release)s;python %(manage_path)s/manage.py --settings=%(settings)s collectstatic --noinput" % { 'shared_path':env.shared_path, 'current_release':env.current_release, 'settings':env.settings, 'manage_path':env.manage_path })
+    run("source %(venv_path)s/bin/activate;cd %(current_release)s;python %(manage_path)s/manage.py --settings=%(settings)s collectstatic --noinput" % { 'venv_path':env.venv_path, 'current_release':env.current_release, 'settings':env.settings, 'manage_path':env.manage_path })
 
 @with_defaults
 def symlink():
