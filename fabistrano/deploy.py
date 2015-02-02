@@ -82,7 +82,7 @@ def set_current():
 @with_defaults
 def update_env():
     """Update servers environment on the remote servers"""
-    sudo_run("source %(venv_path)s/bin/activate;cd %(current_release)s; pip install -r requirements.txt" % { 'venv_path':env.venv_path, 'current_release':env.current_release })
+    sudo_run("source %(venv_path)s/bin/activate;cd %(current_release)s; pip install -r requirements.txt --allow-all-external" % { 'venv_path':env.venv_path, 'current_release':env.current_release })
     permissions()
 
 @task 
