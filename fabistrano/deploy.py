@@ -59,6 +59,7 @@ def update():
     """Copies your project and updates environment and symlink"""
     update_code()
     update_env()
+    collectstatic()
     symlink()
     set_current()
     permissions()
@@ -68,6 +69,10 @@ def update_code():
     """Copies your project to the remote servers"""
     checkout()
     permissions()
+
+@with_defaults
+def collectstatic():
+    run("source %(venv_path)s/bin/activate;cd %(current_release)s;python %(manage_path)s/manage.py collectstatic --noinput --settings=%(settings)s" % { 'venv_path':env.venv_path, 'current_release':env.current_release, 'settings':env.settings, 'manage_path':env.manage_path })
 
 @with_defaults
 def symlink():
