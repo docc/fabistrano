@@ -62,6 +62,7 @@ def update():
     collectstatic()
     symlink()
     set_current()
+    migrate()
     permissions()
 
 @task
@@ -73,6 +74,10 @@ def update_code():
 @with_defaults
 def collectstatic():
     run("source %(venv_path)s/bin/activate;cd %(current_release)s;python %(manage_path)s/manage.py collectstatic --noinput --settings=%(settings)s" % { 'venv_path':env.venv_path, 'current_release':env.current_release, 'settings':env.settings, 'manage_path':env.manage_path })
+
+@with_defaults
+def migrate():
+    run("source %(venv_path)s/bin/activate;cd %(current_release)s;python %(manage_path)s/manage.py migrate --noinput --settings=%(settings)s" % { 'venv_path':env.venv_path, 'current_release':env.current_release, 'settings':env.settings, 'manage_path':env.manage_path })
 
 @with_defaults
 def symlink():
